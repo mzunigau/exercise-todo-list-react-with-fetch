@@ -67,7 +67,7 @@ export function TodoList() {
 							className="taskbox"
 							placeholder="Escribe tus tareas"
 							onKeyPress={e =>
-								e.key === "Enter" ? handleChange : ""
+								e.key === "Enter" ? handleChange() : ""
 							}
 							onChange={e => setTask(e.target.value)}
 							value={task}
@@ -76,7 +76,10 @@ export function TodoList() {
 
 					{todoList.map((result, i) => (
 						<li className="list-group-item" key={i}>
-							{result.label}
+							{result.label}{" "}
+							<span>
+								{result.done ? "Terminada" : "Sin terminar"}
+							</span>
 						</li>
 					))}
 
