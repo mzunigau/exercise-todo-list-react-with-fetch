@@ -3,6 +3,10 @@ import React, { useState, useEffect } from "react";
 export function TodoList() {
 	//para tareas individuales
 	const [task, setTask] = useState();
+
+	//para flag
+	const [flag, setFlag] = useState();
+
 	//almacenar grupos de tareas
 	const [todoList, setTodoList] = useState([]);
 
@@ -14,8 +18,22 @@ export function TodoList() {
 		}
 	};
 
+	const deleteTask = id => {
+		todoList.splice(id, 1);
+		setTodoList([...todoList]);
+	};
+
+	//Init
+	useEffect(() => {
+		create();
+		getData();
+	}, []);
+
+	//Services
+	//show
 	const getData = () => {
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/mzuniga", {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/mzuniga103", {
+			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 				Accept: "application/json"
@@ -28,12 +46,19 @@ export function TodoList() {
 				setTodoList(todoList.concat(myJson));
 			});
 	};
-	useEffect(() => {
-		getData();
-	}, []);
-
+	//Create User
+	const create = () => {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/mzuniga103", {
+			method: "POST",
+			body: JSON.stringify([]),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+	};
+	// Update users tasks
 	const update = () => {
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/mzuniga", {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/mzuniga103", {
 			method: "PUT",
 			body: JSON.stringify(todoList),
 			headers: {
@@ -53,6 +78,16 @@ export function TodoList() {
 				//error handling
 				console.log(error);
 			});
+	};
+
+	//Delete
+	const deleteT = () => {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/mzuniga103", {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
 	};
 
 	return (
