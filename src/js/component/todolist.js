@@ -92,7 +92,7 @@ export function TodoList() {
 	};
 
 	//Delete
-	const deleteT = () => {
+	const listUserTask = () => {
 		fetch(url, {
 			method: "DELETE",
 			headers: {
@@ -118,9 +118,9 @@ export function TodoList() {
 					/>
 					<button
 						type="button"
-						onClick={() => deleteT()}
+						onClick={() => listUserTask()}
 						className="btn btn-danger mt-3">
-						Eliminar Listado
+						Listar tareas de usuario
 					</button>{" "}
 					<button
 						type="button"
