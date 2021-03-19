@@ -16,4 +16,13 @@
 }
 .taskbox{
     width: 100%;
+    text-align: left;
+}
+
+.close {
+  visibility: hidden;
+}
+
+ul li:hover .close {
+  visibility: visible;
 }
