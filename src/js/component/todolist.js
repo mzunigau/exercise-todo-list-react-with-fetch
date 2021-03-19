@@ -101,27 +101,28 @@ export function TodoList() {
 		});
 	};
 
+	/*<input
+                            className="form-control "
+                            placeholder="Seleccionar usuario"
+                            onKeyPress={e =>
+                                e.key === "Enter" ? handleUser(e) : ""
+                            }
+                            onChange={e => setUser(e.target.value)}
+                            value={user}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => listUserTask()}
+                            className="btn btn-danger mt-3">
+                            Listar tareas de usuario
+                        </button>{" "}*/
+
 	return (
 		<div className="col d-flex justify-content-center todo">
 			<div className="card  text-center" style={{ width: "18rem" }}>
 				<div className="card-header">
 					{" "}
 					<h1>TodoList</h1>{" "}
-					<input
-						className="form-control "
-						placeholder="Seleccionar usuario"
-						onKeyPress={e =>
-							e.key === "Enter" ? handleUser(e) : ""
-						}
-						onChange={e => setUser(e.target.value)}
-						value={user}
-					/>
-					<button
-						type="button"
-						onClick={() => listUserTask()}
-						className="btn btn-danger mt-3">
-						Listar tareas de usuario
-					</button>{" "}
 					<button
 						type="button"
 						onClick={() => getData()}
