@@ -31,11 +31,12 @@ export function TodoList() {
 
 	const deleteTask = id => {
 		todoList.splice(id, 1);
-		setTodoList([todoList]);
+		console.log("lista asctualizada" + todoList);
+		setTodoList(todoList);
 		update();
-		if (flag) {
-			getData();
-		}
+		//if (flag) {
+		getData();
+		//}
 	};
 
 	//Init
@@ -45,14 +46,17 @@ export function TodoList() {
 
 	//Services
 	//show
-	const getData = () => {
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/marco106", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				Accept: "application/json"
+	const getData = async () => {
+		await fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/marco106",
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json"
+				}
 			}
-		})
+		)
 			.then(function(response) {
 				return response.json();
 			})
@@ -61,8 +65,8 @@ export function TodoList() {
 			});
 	};
 	//Create User
-	const create = () => {
-		fetch(url, {
+	const create = async () => {
+		await fetch(url, {
 			method: "POST",
 			body: JSON.stringify([]),
 			headers: {
@@ -71,20 +75,22 @@ export function TodoList() {
 		});
 	};
 	// Update users tasks
-	const update = () => {
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/marco106", {
-			method: "PUT",
-			body: JSON.stringify(todoList),
-			headers: {
-				"Content-Type": "application/json"
+	const update = async () => {
+		await fetch(
+			"https://assets.breatheco.de/apis/fake/todos/user/marco106",
+			{
+				method: "PUT",
+				body: JSON.stringify(todoList),
+				headers: {
+					"Content-Type": "application/json"
+				}
 			}
-		})
+		)
 			.then(resp => {
 				return resp.json();
 			})
 			.then(data => {
 				console.log(data);
-				setFlag(true);
 			})
 			.catch(error => {
 				console.log(error);
